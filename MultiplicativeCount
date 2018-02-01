@@ -1,0 +1,36 @@
+/* program -A[I] and B[I] represent C[I] = A[I] + B[I] / 1,000,000.A pair of indices (P, Q) is multiplicative  if 0 ≤ P < Q < N and C[P] * C[Q] ≥ C[P] + C[Q].
+
+public class MyClass {
+    int len=0,i=0,count=0;
+    public int list(double A[],double B[])
+    {
+       double C[]=new double[A.length];
+       for(int i=0;i<C.length;i++)
+       {
+           C[i]=A[i]+(B[i]/1000000);
+           System.out.println("C["+i+"] = "+C[i]);
+       }
+       for(i=0;i<C.length-1;i++)
+       {
+           for(int j=i+1;j<C.length;j++)
+           {
+              double mult=(C[i]*C[j]);
+              double add=(C[i]+C[j]);
+               if(mult>=add)
+               {
+                   System.out.println("Matching pair is C ("+i+","+j+") and value is "+(C[i]*C[j])+"=>"+(C[i]+C[j]));
+                   count++;
+               }
+               
+           }
+       }
+       
+        return (count);
+    }
+    public static void main(String args[]) {
+        double A[]={0,1,2,2,3,5};
+        double B[]={500000,500000,0,0,0,20000};
+        MyClass m=new MyClass();
+        System.out.println(m.list(A,B));
+    }
+}
